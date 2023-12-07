@@ -6,13 +6,9 @@ export default class RangeNum extends HTMLElement {
     });
     this.shadowRoot.append(document.createElement("slot"));
     this.boundUpdateControls = this.updateControls.bind(this);
-    this.rangeInput = Object.assign(document.createElement("input"), {
-      type: "range",
-    });
-    this.numInput = Object.assign(document.createElement("input"), {
-      type: "number",
-    });
-    this.append(this.rangeInput, this.numInput);
+    for (let attr of RangeNum.observedAttributes) {
+      this.updateProp(attr);
+    }
   }
 
   static observedAttributes = [
@@ -30,8 +26,22 @@ export default class RangeNum extends HTMLElement {
   }
 
   connectedCallback() {
+    this.value = this.getAttribute("value") || this.min || this.max || 0;
+
     this.addEventListener("input", this.handleInput);
     this.shadowRoot.addEventListener("slotchange", this.boundUpdateControls);
+
+    if (!this.rangeInput) {
+      this.rangeInput = Object.assign(document.createElement("input"), {
+        type: "range",
+      });
+    }
+    if (!this.numInput) {
+      this.numInput = Object.assign(document.createElement("input"), {
+        type: "number",
+      });
+    }
+    this.append(this.rangeInput, this.numInput);
   }
 
   disconnectedCallback() {
@@ -51,6 +61,7 @@ export default class RangeNum extends HTMLElement {
   }
 
   updateProp(attr) {
+    if (!this.rangeInput && !this.numInput) return;
     if (attr === "disabled") {
       if (this.getAttribute(attr) !== "number") {
         this.rangeInput.disabled = this.hasAttribute("disabled");
@@ -79,4 +90,17 @@ export default class RangeNum extends HTMLElement {
       numInput.value = rangeInput.value;
     }
   }
+}
+
+for (let attr of RangeNum.observedAttributes) {
+  Object.defineProperty(RangeNum.prototype, attr, {
+    get() {
+      return this.getAttribute(attr);
+    },
+    set(newValue) {
+      this.setAttribute(attr, newValue);
+    },
+    enumerable: true,
+    configurable: true,
+  });
 }

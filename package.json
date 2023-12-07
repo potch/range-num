@@ -1,6 +1,6 @@
 {
   "name": "@potch/range-num",
-  "version": "1.0.1",
+  "version": "1.1.1",
   "description": "A simple web component that combines a range input and a number input",
   "main": "index.js",
   "type": "module",
