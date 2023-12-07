@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>range-num demo</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer type="module">
+      // provided as an ES Module
+      import RangeNum from "../index.js";
+      RangeNum.register();
+    </script>
+  </head>
+  <body>
+    <main>
+      <h1>range-num demo</h1>
+
+      <h2>Basic Usage</h2>
+      <pre><code>&lt;range-num min="0" max="5" value="3" step=".5"></range-num></code></pre>
+      <range-num min="0" max="5" value="3" step=".5"></range-num>
+
+      <h2>Sample Form Usage</h2>
+      <form>
+        <label>
+          Normal <range-num min="0" max="100" value="50"></range-num>
+        </label>
+        <label>
+          <code>readonly</code>
+          <range-num readonly min="0" max="100" value="50"></range-num>
+        </label>
+        <label>
+          <code>disabled="number"</code>
+          <range-num disabled="number" min="0" max="100" value="30"></range-num>
+        </label>
+        <label>
+          <code>disabled</code>
+          <range-num disabled min="0" max="100" value="70"></range-num>
+        </label>
+      </form>
+    </main>
+  </body>
+</html>

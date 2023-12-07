@@ -1,0 +1,35 @@
+@import "../input-range.css";
+
+* {
+  box-sizing: border-box;
+}
+
+pre {
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  background: #233; 
+  color: white; 
+  border-radius: .5rem;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+main {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2em 2em;
+}
+
+form > * {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}

@@ -1,0 +1,11 @@
+/* optional default styles */
+
+range-num {
+  display: inline-grid;
+  grid-template-columns: 1fr 6ch;
+  gap: 1em;
+}
+
+range-num[readonly] input[type="number"] {
+  appearance: textfield;
+}
